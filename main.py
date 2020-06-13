@@ -39,7 +39,7 @@ def run_test(cfg):
     
     ## compare with correct output (without noise)
     plt.plot(x, np.dstack((np.sin(x), np.cos(x)))[0], '.r')
-    plt.legend(['sin train', 'cos train', 'sin sim', 'cos sim'])
+    plt.legend(['sin simulation', 'cos simulation', 'sin', 'cos'])
 
     cfg["file_name"] += ", error: " + str(error[-1])
     plt.savefig("results/" + cfg["file_name"].replace(".", ","))
@@ -65,11 +65,11 @@ configurations = [
     
     # different epochs
     generate_cfg({"epochs": 2000}),
-    generate_cfg({"epochs": 200000}),
+    generate_cfg({"epochs": 100000}),
     
     # more or less samples
     generate_cfg({"samples": 50}),
-    generate_cfg({"samples": 200}),
+    generate_cfg({"samples": 400}),
     generate_cfg({"samples": 1000}),
     
     # different noise levels
@@ -91,7 +91,6 @@ configurations = [
     generate_cfg({"activation_functions": [nl.trans.TanSig(), nl.trans.LogSig()]}),
     generate_cfg({"activation_functions": [nl.trans.TanSig(), nl.trans.TanSig()]}),
     generate_cfg({"activation_functions": [nl.trans.LogSig(), nl.trans.LogSig()]}),
-    generate_cfg({"activation_functions": [nl.trans.LogSig(), nl.trans.SoftMax()]}),
     generate_cfg({"activation_functions": [nl.trans.LogSig(), nl.trans.PureLin()]}),
     
     # simulate for a larger range of values
